@@ -1,7 +1,6 @@
 package pl.wojciechkostecki.wood.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,30 +8,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
-public class Trunk {
-
+public class Branch {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Double heightInCm;
+    private Double lengthInCm;
 
-    private Double widthInCm;
-
-    @OneToOne(mappedBy = "trunk")
+    @ManyToOne
     @JsonBackReference
-    private Tree tree;
+    private Trunk trunk;
 
-    @OneToMany(mappedBy = "trunk")
-    @JsonManagedReference
-    private List<Branch> branches = new ArrayList<>();
+    @ManyToOne
+    private Branch largeBranch;
+
+    @OneToMany(mappedBy = "largeBranch")
+    private List<Branch> smallBranches;
 
 }
