@@ -1,8 +1,7 @@
 package pl.wojciechkostecki.wood.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,8 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-@Getter
-@Setter
+@Data
 public class Tree {
 
     @Id

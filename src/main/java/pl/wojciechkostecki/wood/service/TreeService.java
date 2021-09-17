@@ -28,7 +28,7 @@ public class TreeService {
         return treeMapper.toDto(treeRepository.findAll());
     }
 
-    public Optional<TreeDTO> findById(Long id) {
-        return treeRepository.findById(id).map(treeMapper::toDto);
+    public Optional<Tree> findById(Long id) {
+        return treeRepository.findById(id);
     }
 }
