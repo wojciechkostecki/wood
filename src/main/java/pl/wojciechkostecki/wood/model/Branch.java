@@ -30,10 +30,10 @@ public class Branch {
 
     @ManyToOne
     @JsonIgnore
-    private Branch largeBranch;
+    private Branch branch;
 
-    @OneToMany(mappedBy = "largeBranch")
-    private List<Branch> smallBranches;
+    @OneToMany(mappedBy = "branch")
+    private List<Branch> branches;
 
     @OneToMany(mappedBy = "branch")
     @JsonManagedReference

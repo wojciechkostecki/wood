@@ -16,7 +16,9 @@ public class BranchDTO {
 
     private Long trunkId;
 
-    private List<Branch> smallBranches;
+    private Long branchId;
+
+    private List<Branch> branches;
 
     private List<Leaf> leaves = new ArrayList<>();
 

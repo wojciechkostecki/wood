@@ -9,5 +9,6 @@ import pl.wojciechkostecki.wood.model.dto.BranchDTO;
 public interface BranchMapper extends EntityMapper<BranchDTO, Branch>{
 
     @Mapping(target = "trunkId", source = "trunk.id")
+    @Mapping(target = "branchId", source = "branch.id")
     BranchDTO toDto(Branch branch);
 }

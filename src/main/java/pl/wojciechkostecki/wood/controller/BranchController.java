@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.wojciechkostecki.wood.model.dto.BranchDTO;
-import pl.wojciechkostecki.wood.model.dto.SmallBranchDTO;
 import pl.wojciechkostecki.wood.service.BranchService;
 
 import java.util.List;
@@ -28,14 +27,9 @@ public class BranchController {
     }
 
     @PostMapping
-    public ResponseEntity<BranchDTO> createBranch(@RequestBody BranchDTO branchDTO) {
-        BranchDTO savedBranch = branchService.saveLargeBranch(branchDTO);
-        return new ResponseEntity<>(savedBranch, HttpStatus.CREATED);
+    public ResponseEntity<Void> createBranch(@RequestBody BranchDTO branchDTO) {
+        branchService.save(branchDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PostMapping("/small")
-    public ResponseEntity<SmallBranchDTO> createSmallBranch(@RequestBody SmallBranchDTO branchDTO) {
-        SmallBranchDTO savedSmallBranch = branchService.saveSmallBranch(branchDTO);
-        return new ResponseEntity<>(savedSmallBranch, HttpStatus.CREATED);
-    }
 }
