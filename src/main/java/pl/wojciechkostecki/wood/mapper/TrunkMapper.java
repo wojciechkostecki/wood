@@ -10,5 +10,4 @@ public interface TrunkMapper extends EntityMapper<TrunkDTO, Trunk>{
 
     @Mapping(source = "tree.id", target = "treeId")
     TrunkDTO toDto(Trunk trunk);
-
 }
