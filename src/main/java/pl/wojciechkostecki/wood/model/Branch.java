@@ -39,4 +39,7 @@ public class Branch {
     @JsonManagedReference
     private List<Leaf> leaves = new ArrayList<>();
 
+    public void grow(Double growthFactor) {
+        lengthInCm *= growthFactor;
+    }
 }

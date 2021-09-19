@@ -31,4 +31,31 @@ public class TreeService {
     public Optional<Tree> findById(Long id) {
         return treeRepository.findById(id);
     }
+
+    public void growTree(Long id) {
+        Tree tree = treeRepository.getById(id);
+
+        if(tree.getAgeInYears()<= 3) {
+            growInYear(tree, 1.5,1.5,1.3);
+        }
+
+        if(tree.getAgeInYears() > 3 && tree.getAgeInYears() <= 8) {
+            growInYear(tree, 1.4,1.35,1.25);
+        }
+
+        if(tree.getAgeInYears() > 8 && tree.getAgeInYears() <= 20) {
+            growInYear(tree, 1.2,1.1,1.1);
+        }
+
+    }
+
+    public void growInYear(Tree tree,double growthFactorOfTrunk,double growthFactorOfBranch,double growthFactorOfLeaf) {
+        tree.setAgeInYears(tree.getAgeInYears()+1);
+        tree.getTrunk().grow(growthFactorOfTrunk);
+        tree.getTrunk().getBranches().forEach(b->b.grow(growthFactorOfBranch));
+        tree.getTrunk().getBranches().forEach(b->b.getBranches().forEach(e->e.grow(growthFactorOfBranch)));
+        tree.getTrunk().getBranches().forEach(b->b.getLeaves().forEach(l->l.grow(growthFactorOfLeaf)));
+        tree.getTrunk().getBranches().forEach(b->b.getBranches().forEach(e->e.getLeaves().forEach(l->l.grow(growthFactorOfLeaf))));
+        treeRepository.save(tree);
+    }
 }

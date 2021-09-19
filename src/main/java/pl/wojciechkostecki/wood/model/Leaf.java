@@ -27,4 +27,9 @@ public class Leaf {
     @JsonBackReference
     private Branch branch;
 
+    public void grow(Double growthFactor) {
+        lengthInMm *= growthFactor;
+        widthInMm *= growthFactor;
+    }
+
 }

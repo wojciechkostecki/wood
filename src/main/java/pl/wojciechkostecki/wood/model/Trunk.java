@@ -33,4 +33,8 @@ public class Trunk {
     @JsonManagedReference
     private List<Branch> branches = new ArrayList<>();
 
+    public void grow(Double growthFactor) {
+    heightInCm *= growthFactor;
+    widthInCm *= growthFactor;
+    }
 }
