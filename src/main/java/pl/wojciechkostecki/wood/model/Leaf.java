@@ -1,8 +1,7 @@
 package pl.wojciechkostecki.wood.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,8 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-@Getter
-@Setter
+@Data
 public class Leaf {
 
     @Id
@@ -28,5 +26,10 @@ public class Leaf {
     @ManyToOne
     @JsonBackReference
     private Branch branch;
+
+    public void grow(Double growthFactor) {
+        lengthInMm *= growthFactor;
+        widthInMm *= growthFactor;
+    }
 
 }

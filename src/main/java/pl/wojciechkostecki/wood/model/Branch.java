@@ -1,9 +1,9 @@
 package pl.wojciechkostecki.wood.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,8 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Data
 public class Branch {
 
     @Id
@@ -30,13 +29,17 @@ public class Branch {
     private Trunk trunk;
 
     @ManyToOne
-    private Branch largeBranch;
+    @JsonIgnore
+    private Branch branch;
 
-    @OneToMany(mappedBy = "largeBranch")
-    private List<Branch> smallBranches;
+    @OneToMany(mappedBy = "branch")
+    private List<Branch> branches;
 
     @OneToMany(mappedBy = "branch")
     @JsonManagedReference
     private List<Leaf> leaves = new ArrayList<>();
 
+    public void grow(Double growthFactor) {
+        lengthInCm *= growthFactor;
+    }
 }
