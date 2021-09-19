@@ -36,21 +36,20 @@ public class TreeService {
         Tree tree = treeRepository.getById(id);
 
         if(tree.getAgeInYears()<= 3) {
-            growInYear(tree, 1.5,1.5,1.3);
+            grow(tree, 1.5,1.5,1.2);
         }
 
         if(tree.getAgeInYears() > 3 && tree.getAgeInYears() <= 8) {
-            growInYear(tree, 1.4,1.35,1.25);
+            grow(tree, 1.4,1.35,1.15);
         }
 
         if(tree.getAgeInYears() > 8 && tree.getAgeInYears() <= 20) {
-            growInYear(tree, 1.2,1.1,1.1);
+            grow(tree, 1.2,1.1,1.1);
         }
 
     }
 
-    public void growInYear(Tree tree,double growthFactorOfTrunk,double growthFactorOfBranch,double growthFactorOfLeaf) {
-        tree.setAgeInYears(tree.getAgeInYears()+1);
+    public void grow(Tree tree, double growthFactorOfTrunk, double growthFactorOfBranch, double growthFactorOfLeaf) {
         tree.getTrunk().grow(growthFactorOfTrunk);
         tree.getTrunk().getBranches().forEach(b->b.grow(growthFactorOfBranch));
         tree.getTrunk().getBranches().forEach(b->b.getBranches().forEach(e->e.grow(growthFactorOfBranch)));
